@@ -32,7 +32,9 @@ const Navbar = () => {
 
   const fetchCartItems = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/cart/${userId}`);
+      const response = await fetch(
+        `https://rem-rcmr.onrender.com/api/cart/${userId}`
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch cart items");
       }
@@ -213,7 +215,7 @@ const Navbar = () => {
   };
   const updateCartItemQuantity = async (userId, productId, quantity) => {
     try {
-      const response = await fetch("http://localhost:5000/api/carts", {
+      const response = await fetch("https://rem-rcmr.onrender.com/api/carts", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -259,7 +261,7 @@ const Navbar = () => {
     //   if (result.isConfirmed) {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/cart/${userId}/${productId}`,
+        `https://rem-rcmr.onrender.com/api/cart/${userId}/${productId}`,
         {
           method: "DELETE",
         }

@@ -48,7 +48,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/seller-products",
+        "https://rem-rcmr.onrender.com/api/seller-products",
         {
           method: "POST",
           body: productData,

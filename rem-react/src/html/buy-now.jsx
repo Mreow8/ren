@@ -55,7 +55,7 @@ const PlaceOrder = () => {
       try {
         const productDetailsPromises = itemsToOrder.map(async (item) => {
           const response = await fetch(
-            `http://localhost:5000/api/products/${item.product_id}`
+            `https://rem-rcmr.onrender.com/api/products/${item.product_id}`
           );
           if (!response.ok) {
             throw new Error(
@@ -102,7 +102,7 @@ const PlaceOrder = () => {
       };
 
       // Send the order to the backend API
-      const response = await fetch("http://localhost:5000/api/orders", {
+      const response = await fetch("https://rem-rcmr.onrender.com/api/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

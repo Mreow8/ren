@@ -22,7 +22,7 @@ const ProductDesc = () => {
     const fetchProductDetails = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/products/${id}`
+          `https://rem-rcmr.onrender.com/api/products/${id}`
         );
         if (!response.ok) {
           throw new Error(`Failed to fetch product details for ID: ${id}`);
@@ -66,7 +66,7 @@ const ProductDesc = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/cart", {
+      const response = await fetch("https://rem-rcmr.onrender.com/api/cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

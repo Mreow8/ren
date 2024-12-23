@@ -51,10 +51,13 @@ const StoreForm = () => {
     formDataToSend.append("postal_code", formData.postalCode);
     formDataToSend.append("user_id", userId);
     try {
-      const response = await fetch("http://localhost:5000/api/sellers", {
-        method: "POST",
-        body: formDataToSend,
-      });
+      const response = await fetch(
+        "https://rem-rcmr.onrender.com/api/sellers",
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         console.log("Seller added successfully:", data);

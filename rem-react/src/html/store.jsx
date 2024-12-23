@@ -16,7 +16,7 @@ const Store = () => {
     const fetchStoreData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/products?storeId=${id}`
+          `https://rem-rcmr.onrender.com/api/products?storeId=${id}`
         ); // Fetch products for the specific store
         if (!response.ok) {
           throw new Error("Failed to fetch products.");
@@ -51,7 +51,7 @@ const Store = () => {
     if (confirmDelete) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/products/${productId}`,
+          `https://rem-rcmr.onrender.com/api/products/${productId}`,
           {
             method: "DELETE",
           }
@@ -81,7 +81,7 @@ const Store = () => {
       {seller && (
         <div className="seller-info">
           <img
-            src={`http://localhost:5000/uploads/${seller.image}`}
+            src={`https://rem-rcmr.onrender.com/uploads/${seller.image}`}
             alt={seller.name}
             className="seller-image"
           />
