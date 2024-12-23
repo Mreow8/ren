@@ -1,16 +1,18 @@
 const { Pool } = require("pg");
-require("dotenv").config(); // Load environment variables from .env file
+require("dotenv").config();
 
-// Using the full connection URL provided by Render
-const pool = new Pool({
+const connectionOptions = {
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false, // SSL config for Render
-});
-console.log(process.env.DATABASE_URL);
-console.log(process.env.DB_SSL);
+};
+
+if (process.env.DB_SSL === "true") {
+  connectionOptions.ssl = { rejectUnauthorized: false }; // Necessary for Render
+}
+
+const pool = new Pool(connectionOptions);
 
 pool.on("connect", () => {
-  console.log("Connected to the PostgreSQL database on Render.");
+  console.log("Connected to the PostgreSQL database successfully.");
 });
 
 pool.on("error", (err) => {
