@@ -4,10 +4,12 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mysql = require("mysql2");
-const productRoutes = require("./routes/products1");
-// Create an instance of express
+require("dotenv").config({ path: path.resolve(__dirname, "..", ".env") });
+
+// Other setup for Express, routes, etc.
+
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000; // Using environment variable for PORT
 
 // Middleware
 app.use(cors());
@@ -23,10 +25,10 @@ app.use(
 
 // Create a MySQL connection
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "resource_exchange_marketplace",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 // Connect to the database
@@ -37,7 +39,6 @@ db.connect((err) => {
   }
   console.log("Connected to the MySQL database");
 });
-
 app.use("/api/seller-products", productRoutes);
 
 //get the products from the database
