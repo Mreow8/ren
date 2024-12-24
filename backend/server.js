@@ -1,37 +1,21 @@
+// backend/server.js
 const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
 const path = require("path");
-
-const pool = require("./config/db");
+const cors = require("cors");
 
 const app = express();
-
-// Ensure the port is dynamically set from the environment variable
 const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static files from the 'html' folder inside 'src'
-app.use(express.static(path.join(__dirname, "../rem-react/src/html"))); // Adjust path to point to 'html' folder inside 'src'
+// Serve static files from the React build directory
+app.use(express.static(path.join(__dirname, "../rem-react/build")));
 
-// Serve home.html as the homepage
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../rem-react/src/html", "home.html"));
+// Serve the React app for all routes (this serves index.html on any non-API route)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../rem-react/build", "index.html"));
 });
-
-// Test the database connection
-pool
-  .connect()
-  .then(() => {
-    console.log("Connected to the PostgreSQL database successfully.");
-  })
-  .catch((err) => {
-    console.error("Error connecting to the PostgreSQL database:", err.stack);
-  });
 
 // Start the server
 app.listen(PORT, () => {
