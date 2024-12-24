@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const path = require("path");
 
-// Import the database pool from config/db.js
 const pool = require("./config/db");
 
 const app = express();
@@ -14,6 +14,14 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Serve static files from the public folder inside rem-react
+app.use(express.static(path.join(__dirname, "../rem-react/public"))); // Adjust path to point to public folder
+
+// Serve home.html as the homepage
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../rem-react/public", "home.html"));
+});
 
 // Test the database connection
 pool
