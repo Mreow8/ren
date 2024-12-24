@@ -15,8 +15,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static files from the public folder inside rem-react
-app.use(express.static(path.join(__dirname, "../rem-react/public"))); // Adjust path to point to public folder
+// Serve static files from the 'html' folder inside 'src'
+app.use(express.static(path.join(__dirname, "../rem-react/src/html"))); // Adjust path to point to 'html' folder inside 'src'
 
 // Serve home.html as the homepage
 app.get("/", (req, res) => {
