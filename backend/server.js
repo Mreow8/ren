@@ -2,10 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const productRoutes = require("./routes/products");
-const cartRoutes = require("./routes/cart");
-const authRoutes = require("./routes/auth");
-
+// Import the database pool from config/db.js
 const pool = require("./config/db");
 
 const app = express();
@@ -17,11 +14,6 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Routes
-app.use("/api/products", productRoutes);
-app.use("/api/cart", cartRoutes);
-app.use("/api/auth", authRoutes);
 
 // Test the database connection
 pool
