@@ -1,13 +1,15 @@
 const { Pool } = require("pg");
-require("dotenv").config();
 
 const connectionOptions = {
-  connectionString: process.env.DATABASE_URL,
+  connectionString:
+    "postgresql://rem_p4tm_user:Tu6m6KfFKADijl8ubmAYrHoxIkbDbCC0@dpg-ctg0cat2ng1s738oeq9g-a.singapore-postgres.render.com/rem_p4tm",
+  ssl: {
+    rejectUnauthorized: false, // Required for Render's PostgreSQL
+  },
 };
 
-if (process.env.DB_SSL === "true") {
-  connectionOptions.ssl = { rejectUnauthorized: false }; // Necessary for Render
-}
+// Debugging: Log the connection options
+console.log("Connection Options:", connectionOptions);
 
 const pool = new Pool(connectionOptions);
 
