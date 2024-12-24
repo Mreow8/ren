@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "../rem-react/public"))); // Adjust 
 
 // Serve home.html as the homepage
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../rem-react/public", "home.html"));
+  res.sendFile(path.join(__dirname, "../rem-react/src/html", "home.html"));
 });
 
 // Test the database connection
